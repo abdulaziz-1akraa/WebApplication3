@@ -1,0 +1,42 @@
+﻿@model AyuEmlak.Models.Emlak
+
+@{
+    ViewData["Title"] = "Yeni Emlak Ekle";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Yeni Emlak Ekle</h2>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="Baslik" class="form-label"></label>
+            <input asp-for="Baslik" class="form-control" />
+            <span asp-validation-for="Baslik" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Aciklama" class="form-label"></label>
+            <textarea asp-for="Aciklama" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Fiyat" class="form-label"></label>
+            <input asp-for="Fiyat" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="KategoriId" class="form-label">Kategori</label>
+            <select asp-for="KategoriId" asp-items="ViewBag.Kategoriler" class="form-select">
+                <option value="">-- Seçiniz --</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
